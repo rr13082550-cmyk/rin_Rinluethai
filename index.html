@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="th" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ploy's Portfolio ✨ - รินทร์ฤทัย พฤกษบูรณ์โกศล</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        cutePink: '#ffb6c1',
+                        pinkSoft: '#fff0f5',
+                        pinkDark: '#f43f5e',
+                        pastelBlue: '#e0f2fe',
+                        pastelYellow: '#fef9c3',
+                        pastelPurple: '#f3e8ff',
+                    },
+                    fontFamily: {
+                        sans: ['Mitr', 'Itim', 'Kanit', 'sans-serif'],
+                        cute: ['Itim', 'cursive'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts: Itim (Cute) & Mitr for Modern Thai Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Itim&family=Mitr:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Mitr', sans-serif;
+            background-color: #fffafc;
+        }
+        .font-cute {
+            font-family: 'Itim', cursive;
+        }
+        .cute-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border: 2px solid #fecdd3;
+            box-shadow: 0 10px 25px -5px rgba(251, 113, 133, 0.15);
+        }
+        .dark .cute-card {
+            background: rgba(30, 27, 38, 0.85);
+            backdrop-filter: blur(10px);
+            border: 2px solid #881337;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+        }
+        .cute-badge {
+            box-shadow: 0 4px 12px rgba(244, 63, 94, 0.15);
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-8px) rotate(2deg); }
+        }
+        .animate-float {
+            animation: float 4s ease-in-out infinite;
+        }
+        @keyframes pulse-soft {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        .animate-pulse-soft {
+            animation: pulse-soft 3s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="bg-pink-50/50 text-pink-950 dark:bg-zinc-950 dark:text-pink-100 transition-colors duration-300 min-h-screen flex flex-col justify-between selection:bg-rose-200 selection:text-rose-900">
+
+    <!-- Navigation Bar -->
+    <header class="sticky top-0 z-50 cute-card rounded-b-3xl mx-2 sm:mx-6 mt-2 transition-colors duration-300">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+            <a href="#" class="text-xl font-bold font-cute tracking-wide flex items-center gap-2 text-rose-500 dark:text-rose-400 hover:scale-105 transition-transform">
+                <span class="text-2xl animate-bounce">🎀</span>
+                <span>Ploy<span class="text-pink-400">.Portfolio</span></span>
+            </a>
+            
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex items-center gap-6 text-sm font-medium">
+                <a href="#about" class="hover:text-rose-500 dark:hover:text-rose-300 transition-colors flex items-center gap-1">✨ เกี่ยวกับฉัน</a>
+                <a href="#education" class="hover:text-rose-500 dark:hover:text-rose-300 transition-colors flex items-center gap-1">🎓 ประวัติการศึกษา</a>
+                <a href="#skills" class="hover:text-rose-500 dark:hover:text-rose-300 transition-colors flex items-center gap-1">💖 ความชอบ & ไลฟ์สไตล์</a>
+                <a href="#github-guide" class="hover:text-rose-500 dark:hover:text-rose-300 transition-colors flex items-center gap-1">🚀 ขึ้น GitHub Pages</a>
+                <a href="#contact" class="px-5 py-2 bg-gradient-to-r from-rose-400 to-pink-400 text-white rounded-full hover:shadow-lg hover:shadow-rose-300/50 transition-all font-cute text-base">💌 ติดต่อพลอย</a>
+            </nav>
+
+            <div class="flex items-center gap-2">
+                <!-- Theme Toggle Button -->
+                <button id="themeToggle" class="p-2.5 rounded-full bg-rose-100 dark:bg-zinc-800 text-rose-500 dark:text-rose-300 hover:rotate-12 transition-all" aria-label="Toggle Theme">
+                    <i class="fa-solid fa-moon text-lg dark:hidden"></i>
+                    <i class="fa-solid fa-sun text-lg hidden dark:block"></i>
+                </button>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuBtn" class="md:hidden p-2 rounded-2xl bg-rose-100 dark:bg-zinc-800 text-rose-500 dark:text-rose-300">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobileMenu" class="hidden md:hidden px-4 pt-2 pb-6 border-t border-rose-100 dark:border-zinc-800 bg-white/95 dark:bg-zinc-900/95 rounded-b-3xl">
+            <div class="flex flex-col gap-3 font-medium text-rose-900 dark:text-rose-100 pt-2 text-center">
+                <a href="#about" class="mobile-link py-2 rounded-xl hover:bg-rose-50 dark:hover:bg-zinc-800">✨ เกี่ยวกับฉัน</a>
+                <a href="#education" class="mobile-link py-2 rounded-xl hover:bg-rose-50 dark:hover:bg-zinc-800">🎓 ประวัติการศึกษา</a>
+                <a href="#skills" class="mobile-link py-2 rounded-xl hover:bg-rose-50 dark:hover:bg-zinc-800">💖 ความชอบ & ไลฟ์สไตล์</a>
+                <a href="#github-guide" class="mobile-link py-2 rounded-xl hover:bg-rose-50 dark:hover:bg-zinc-800">🚀 ขึ้น GitHub Pages</a>
+                <a href="#contact" class="mobile-link py-2.5 bg-gradient-to-r from-rose-400 to-pink-400 text-white rounded-full font-cute text-lg">💌 ติดต่อพลอย</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        <!-- Hero Section -->
+        <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20 relative overflow-hidden">
+            <!-- Decorative Background Elements -->
+            <div class="absolute top-10 left-10 text-rose-200 dark:text-zinc-800 text-4xl animate-float opacity-70">🌸</div>
+            <div class="absolute bottom-10 right-10 text-pink-200 dark:text-zinc-800 text-5xl animate-float opacity-70" style="animation-delay: 1.5s;">🧸</div>
+
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center relative z-10">
+                <div class="md:col-span-7 space-y-6 text-center md:text-left">
+                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-rose-100 dark:bg-rose-950/60 text-rose-600 dark:text-rose-300 text-sm font-medium cute-badge border border-rose-200 dark:border-rose-900">
+                        <span class="animate-pulse">🍓</span>
+                        <span>สาขาวิชาสาธารณสุขชุมชน</span>
+                    </div>
+                    
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-tight">
+                        สวัสดีค่ะ! พลอยเองนะคะ <br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-rose-400 via-pink-500 to-purple-400 font-cute">
+                            รินทร์ฤทัย พฤกษบูรณ์โกศล ✨
+                        </span>
+                    </h1>
+
+                    <p class="text-base sm:text-lg text-rose-900/80 dark:text-pink-200/80 max-w-xl font-light mx-auto md:mx-0">
+                        ยินดีต้อนรับสู่พื้นที่เล็กๆ ของพลอยค่ะ! นักศึกษาปริญญาตรี วิทยาลัยการสาธารณสุขสิรินธร จังหวัดขอนแก่น พร้อมที่จะเรียนรู้และเติบโตอยู่เสมอค่ะ 🌷
+                    </p>
+
+                    <!-- Quote Box -->
+                    <div class="p-4 rounded-2xl bg-white/70 dark:bg-zinc-800/80 border-2 border-dashed border-rose-300 dark:border-rose-800 text-rose-700 dark:text-rose-300 text-sm max-w-lg mx-auto md:mx-0">
+                        <i class="fa-solid fa-quote-left text-rose-300 mr-2"></i>
+                        <span class="font-cute text-base text-rose-600 dark:text-rose-300">"ยิ่งท้าทาย ยิ่งเติบโต 🌱"</span> — คติประจำใจสุดน่ารักของพลอย
+                    </div>
+
+                    <div class="flex flex-wrap justify-center md:justify-start gap-4 pt-2">
+                        <a href="#contact" class="px-7 py-3 rounded-full bg-gradient-to-r from-rose-400 to-pink-400 text-white font-cute text-lg hover:scale-105 transition-all shadow-lg shadow-rose-300/50 flex items-center gap-2">
+                            <i class="fa-solid fa-heart"></i> ส่งข้อความหาพลอย
+                        </a>
+                        <a href="#about" class="px-7 py-3 rounded-full bg-white dark:bg-zinc-800 border-2 border-rose-200 dark:border-rose-900 font-cute text-lg hover:bg-rose-50 dark:hover:bg-zinc-700 transition-all flex items-center gap-2 text-rose-600 dark:text-rose-300">
+                            ดูข้อมูลเพิ่มเติม <i class="fa-solid fa-angles-down text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Avatar Profile Box -->
+                <div class="md:col-span-5 flex justify-center">
+                    <div class="relative w-64 h-64 sm:w-80 sm:h-80 rounded-[2.5rem] overflow-hidden cute-card p-3 animate-float">
+                        <div class="w-full h-full rounded-[2rem] overflow-hidden relative group">
+                            <img src="https://placehold.co/600x600/ffe4e6/be123c?text=Ploy+Rintruthai+%F0%9F%8D%93" alt="นางสาวรินทร์ฤทัย พฤกษบูรณ์โกศล" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-rose-950/70 via-transparent to-transparent flex flex-col justify-end p-5 text-white">
+                                <span class="text-xs bg-rose-500/80 backdrop-blur-md px-3 py-1 rounded-full w-fit font-cute mb-1">💖 Profile</span>
+                                <h3 class="text-xl font-bold font-cute">พลอย - รินทร์ฤทัย</h3>
+                                <p class="text-xs text-rose-200">SCPHKK Student ✨</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-16 bg-white/50 dark:bg-zinc-900/50 border-y border-rose-100 dark:border-zinc-800 relative">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-12">
+                    <span class="text-3xl">🎀</span>
+                    <h2 class="text-3xl font-bold font-cute text-rose-600 dark:text-rose-400">เกี่ยวกับตัวพลอยเอง</h2>
+                    <p class="text-rose-900/60 dark:text-rose-200/60 text-sm mt-1">Personal Background Information</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Personal Details -->
+                    <div class="cute-card p-6 rounded-3xl hover:-translate-y-1 transition-transform">
+                        <div class="w-12 h-12 rounded-2xl bg-rose-100 dark:bg-rose-950/60 text-rose-500 flex items-center justify-center text-xl mb-4">
+                            <i class="fa-solid fa-address-card"></i>
+                        </div>
+                        <h3 class="text-lg font-bold font-cute text-rose-600 dark:text-rose-400 mb-4 border-b border-rose-100 dark:border-zinc-800 pb-2">ข้อมูลส่วนตัว 🧸</h3>
+                        <ul class="space-y-3 text-sm">
+                            <li class="flex justify-between"><span class="text-rose-900/50 dark:text-rose-300/50">ชื่อ-สกุล:</span> <span class="font-medium">นางสาวรินทร์ฤทัย พฤกษบูรณ์โกศล</span></li>
+                            <li class="flex justify-between"><span class="text-rose-900/50 dark:text-rose-300/50">ชื่อเล่น:</span> <span class="font-bold text-rose-500">พลอย 🎀</span></li>
+                            <li class="flex justify-between"><span class="text-rose-900/50 dark:text-rose-300/50">วันเกิด:</span> <span class="font-medium">13 สิงหาคม 2550</span></li>
+                            <li class="flex justify-between"><span class="text-rose-900/50 dark:text-rose-300/50">อายุ:</span> <span class="font-medium">19 ปี</span></li>
+                            <li class="flex justify-between"><span class="text-rose-900/50 dark:text-rose-300/50">กรุ๊ปเลือด:</span> <span class="font-medium">O</span></li>
+                            <li class="flex justify-between"><span class="text-rose-900/50 dark:text-rose-300/50">สัดส่วน:</span> <span class="font-medium">สูง 160 ซม. / หนัก 41 กก.</span></li>
+                        </ul>
+                    </div>
+
+                    <!-- Address Box -->
+                    <div class="cute-card p-6 rounded-3xl hover:-translate-y-1 transition-transform">
+                        <div class="w-12 h-12 rounded-2xl bg-sky-100 dark:bg-sky-950/60 text-sky-500 flex items-center justify-center text-xl mb-4">
+                            <i class="fa-solid fa-house-chimney-heart"></i>
+                        </div>
+                        <h3 class="text-lg font-bold font-cute text-sky-600 dark:text-sky-400 mb-4 border-b border-rose-100 dark:border-zinc-800 pb-2">ที่อยู่ของพลอย 🏡</h3>
+                        <p class="text-sm leading-relaxed mb-4 text-rose-900/80 dark:text-rose-100">
+                            12 หมู่ 11 ตำบลหนองสนม <br>
+                            อำเภอวานรนิวาส จังหวัดสกลนคร 47120
+                        </p>
+                        <div class="mt-6 pt-4 border-t border-rose-100 dark:border-zinc-800">
+                            <span class="text-xs font-semibold uppercase tracking-wider text-rose-400">เป้าหมายในชีวิต 🎯</span>
+                            <p class="text-sm font-bold text-rose-500 mt-1 font-cute text-base">
+                                ✨ อยากมีธุรกิจเป็นของตัวเองในอนาคตค่ะ!
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Special Abilities / Hobbies -->
+                    <div class="cute-card p-6 rounded-3xl hover:-translate-y-1 transition-transform">
+                        <div class="w-12 h-12 rounded-2xl bg-purple-100 dark:bg-purple-950/60 text-purple-500 flex items-center justify-center text-xl mb-4">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i>
+                        </div>
+                        <h3 class="text-lg font-bold font-cute text-purple-600 dark:text-purple-400 mb-4 border-b border-rose-100 dark:border-zinc-800 pb-2">ความสามารถพิเศษ 🎸</h3>
+                        <div class="space-y-3">
+                            <div class="flex items-center gap-3 p-2.5 rounded-2xl bg-rose-50 dark:bg-zinc-800/60 text-sm">
+                                <span class="text-lg">🎸</span>
+                                <span class="font-medium">เล่นกีต้าร์เพลินๆ</span>
+                            </div>
+                            <div class="flex items-center gap-3 p-2.5 rounded-2xl bg-rose-50 dark:bg-zinc-800/60 text-sm">
+                                <span class="text-lg">🏐</span>
+                                <span class="font-medium">เล่นกีฬาออกกำลังกาย</span>
+                            </div>
+                            <div class="flex items-center gap-3 p-2.5 rounded-2xl bg-rose-50 dark:bg-zinc-800/60 text-sm">
+                                <span class="text-lg">🤝</span>
+                                <span class="font-medium">การทำงานร่วมกับผู้อื่นเป็นทีม</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Timeline Section -->
+        <section id="education" class="py-16 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-3xl">🎓</span>
+                <h2 class="text-3xl font-bold font-cute text-rose-600 dark:text-rose-400">ประวัติการศึกษา</h2>
+                <p class="text-rose-900/60 dark:text-rose-200/60 text-sm mt-1">Education Journey</p>
+            </div>
+
+            <div class="relative border-l-4 border-rose-200 dark:border-rose-900/60 ml-4 md:ml-32 space-y-8">
+                <!-- University -->
+                <div class="relative pl-6 md:pl-8 group">
+                    <div class="absolute -left-[13px] top-1 w-6 h-6 rounded-full bg-rose-400 ring-4 ring-pink-100 dark:ring-zinc-900 flex items-center justify-center text-xs text-white">🌸</div>
+                    <div class="cute-card p-6 rounded-3xl transition-all duration-300 group-hover:translate-x-2">
+                        <span class="text-xs font-bold font-cute px-3 py-1 rounded-full bg-rose-100 text-rose-600 dark:bg-rose-950 dark:text-rose-300">กำลังศึกษาอยู่ ✨</span>
+                        <h3 class="text-xl font-bold font-cute text-rose-600 dark:text-rose-300 mt-2">ระดับปริญญาตรี</h3>
+                        <p class="text-rose-500 font-medium">วิทยาลัยการสาธารณสุขสิรินธร จังหวัดขอนแก่น</p>
+                        <p class="text-sm text-rose-900/60 dark:text-rose-200/60 mt-1">สาขาวิชาสาธารณสุขชุมชน</p>
+                    </div>
+                </div>
+
+                <!-- High School -->
+                <div class="relative pl-6 md:pl-8 group">
+                    <div class="absolute -left-[13px] top-1 w-6 h-6 rounded-full bg-rose-300 ring-4 ring-pink-100 dark:ring-zinc-900 flex items-center justify-center text-xs text-white">⭐</div>
+                    <div class="cute-card p-6 rounded-3xl transition-all duration-300 group-hover:translate-x-2">
+                        <h3 class="text-xl font-bold font-cute text-rose-600 dark:text-rose-300">ชั้นมัธยมศึกษา (ม.1 - ม.6)</h3>
+                        <p class="text-rose-900/80 dark:text-rose-100 font-medium">โรงเรียนอากาศอำนวยศึกษา</p>
+                        <p class="text-sm text-rose-900/60 dark:text-rose-200/60 mt-1">อำเภออากาศอำนวย จังหวัดสกลนคร</p>
+                    </div>
+                </div>
+
+                <!-- Primary School -->
+                <div class="relative pl-6 md:pl-8 group">
+                    <div class="absolute -left-[13px] top-1 w-6 h-6 rounded-full bg-rose-200 ring-4 ring-pink-100 dark:ring-zinc-900 flex items-center justify-center text-xs text-white">🐥</div>
+                    <div class="cute-card p-6 rounded-3xl transition-all duration-300 group-hover:translate-x-2">
+                        <h3 class="text-xl font-bold font-cute text-rose-600 dark:text-rose-300">ชั้นประถมศึกษา (ป.1 - ป.6)</h3>
+                        <p class="text-rose-900/80 dark:text-rose-100 font-medium">โรงเรียนบ้านอากาศ</p>
+                        <p class="text-sm text-rose-900/60 dark:text-rose-200/60 mt-1">จังหวัดสกลนคร</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Lifestyle & Interests -->
+        <section id="skills" class="py-16 bg-white/50 dark:bg-zinc-900/50 border-y border-rose-100 dark:border-zinc-800">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-12">
+                    <span class="text-3xl">💖</span>
+                    <h2 class="text-3xl font-bold font-cute text-rose-600 dark:text-rose-400">สิ่งที่พลอยชอบ & ไลฟ์สไตล์</h2>
+                    <p class="text-rose-900/60 dark:text-rose-200/60 text-sm mt-1">My Favorite Things</p>
+                </div>
+
+                <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <!-- Favorite Activity -->
+                    <div class="cute-card p-5 rounded-3xl text-center space-y-2 hover:scale-105 transition-transform">
+                        <div class="w-12 h-12 mx-auto rounded-2xl bg-emerald-100 dark:bg-emerald-950/60 text-emerald-500 flex items-center justify-center text-2xl">
+                            🌿
+                        </div>
+                        <p class="text-xs text-rose-400 font-medium">กิจกรรมที่ชอบ</p>
+                        <h4 class="font-bold font-cute text-lg text-rose-600 dark:text-rose-300">เที่ยวธรรมชาติ</h4>
+                    </div>
+
+                    <!-- Favorite Food -->
+                    <div class="cute-card p-5 rounded-3xl text-center space-y-2 hover:scale-105 transition-transform">
+                        <div class="w-12 h-12 mx-auto rounded-2xl bg-amber-100 dark:bg-amber-950/60 text-amber-500 flex items-center justify-center text-2xl">
+                            🍲
+                        </div>
+                        <p class="text-xs text-rose-400 font-medium">อาหารที่ชอบ</p>
+                        <h4 class="font-bold font-cute text-lg text-rose-600 dark:text-rose-300">แกงเห็ดเผาะ</h4>
+                    </div>
+
+                    <!-- Favorite Fruit -->
+                    <div class="cute-card p-5 rounded-3xl text-center space-y-2 hover:scale-105 transition-transform">
+                        <div class="w-12 h-12 mx-auto rounded-2xl bg-yellow-100 dark:bg-yellow-950/60 text-yellow-500 flex items-center justify-center text-2xl">
+                            หมอนทอง
+                        </div>
+                        <p class="text-xs text-rose-400 font-medium">ผลไม้ที่ชอบ</p>
+                        <h4 class="font-bold font-cute text-lg text-rose-600 dark:text-rose-300">ทุเรียน 💛</h4>
+                    </div>
+
+                    <!-- Favorite Color -->
+                    <div class="cute-card p-5 rounded-3xl text-center space-y-2 hover:scale-105 transition-transform">
+                        <div class="w-12 h-12 mx-auto rounded-2xl bg-zinc-800 text-white flex items-center justify-center text-2xl">
+                            🖤
+                        </div>
+                        <p class="text-xs text-rose-400 font-medium">สีที่ชอบ</p>
+                        <h4 class="font-bold font-cute text-lg text-rose-600 dark:text-rose-300">สีดำ (Black)</h4>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- GitHub Pages Deployment Guide Section -->
+        <section id="github-guide" class="py-16 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="cute-card rounded-[2.5rem] p-6 sm:p-10 bg-gradient-to-br from-rose-50/80 via-white to-sky-50/50 dark:from-zinc-900 dark:via-zinc-900 dark:to-zinc-800">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-12 h-12 rounded-2xl bg-rose-500 text-white flex items-center justify-center text-2xl">
+                        <i class="fa-brands fa-github"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-2xl font-bold font-cute text-rose-600 dark:text-rose-400">วิธีนำเว็บน่ารักๆ ขึ้น GitHub Pages ✨</h2>
+                        <p class="text-xs text-rose-900/60 dark:text-rose-200/60">ทำตาม 4 ขั้นตอนนี้เพื่อเปิดใช้งานเว็บไซต์ของพลอยได้ฟรีเลย!</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-sm">
+                    <!-- Step 1 -->
+                    <div class="p-5 rounded-2xl bg-white/80 dark:bg-zinc-800/80 border border-rose-200 dark:border-rose-900 space-y-2">
+                        <span class="inline-block px-2.5 py-0.5 rounded-full bg-rose-100 text-rose-600 dark:bg-rose-950 dark:text-rose-300 font-bold font-cute text-xs">ขั้นตอนที่ 1 🎀</span>
+                        <h4 class="font-bold text-rose-700 dark:text-rose-300">สร้าง Repository</h4>
+                        <p class="text-rose-900/70 dark:text-rose-200/70 text-xs leading-relaxed">
+                            ไปที่ <a href="https://github.com" target="_blank" class="text-rose-500 underline">GitHub.com</a> กดปุ่ม "New" ตั้งชื่อว่า <code class="bg-rose-50 dark:bg-zinc-700 px-1 py-0.5 rounded text-rose-500">portfolio</code> และเลือกเป็น **Public**
+                        </p>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="p-5 rounded-2xl bg-white/80 dark:bg-zinc-800/80 border border-rose-200 dark:border-rose-900 space-y-2">
+                        <span class="inline-block px-2.5 py-0.5 rounded-full bg-rose-100 text-rose-600 dark:bg-rose-950 dark:text-rose-300 font-bold font-cute text-xs">ขั้นตอนที่ 2 📂</span>
+                        <h4 class="font-bold text-rose-700 dark:text-rose-300">เซฟไฟล์ index.html</h4>
+                        <p class="text-rose-900/70 dark:text-rose-200/70 text-xs leading-relaxed">
+                            คัดลอกโค้ดในหน้านี้ทั้งหมด แล้วบันทึกไว้ในคอมพิวเตอร์ ชื่อไฟล์ <code class="bg-rose-50 dark:bg-zinc-700 px-1 py-0.5 rounded text-rose-500">index.html</code>
+                        </p>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="p-5 rounded-2xl bg-white/80 dark:bg-zinc-800/80 border border-rose-200 dark:border-rose-900 space-y-2">
+                        <span class="inline-block px-2.5 py-0.5 rounded-full bg-rose-100 text-rose-600 dark:bg-rose-950 dark:text-rose-300 font-bold font-cute text-xs">ขั้นตอนที่ 3 ☁️</span>
+                        <h4 class="font-bold text-rose-700 dark:text-rose-300">อัปโหลดไฟล์</h4>
+                        <p class="text-rose-900/70 dark:text-rose-200/70 text-xs leading-relaxed">
+                            ใน GitHub repository กดปุ่ม "Add file" -> "Upload files" แล้วลากไฟล์ <code class="bg-rose-50 dark:bg-zinc-700 px-1 py-0.5 rounded text-rose-500">index.html</code> ขึ้นไปแล้วกด Commit
+                        </p>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="p-5 rounded-2xl bg-white/80 dark:bg-zinc-800/80 border border-rose-200 dark:border-rose-900 space-y-2">
+                        <span class="inline-block px-2.5 py-0.5 rounded-full bg-rose-100 text-rose-600 dark:bg-rose-950 dark:text-rose-300 font-bold font-cute text-xs">ขั้นตอนที่ 4 🎉</span>
+                        <h4 class="font-bold text-rose-700 dark:text-rose-300">เปิดใช้งาน Pages</h4>
+                        <p class="text-rose-900/70 dark:text-rose-200/70 text-xs leading-relaxed">
+                            ไปที่ **Settings** > **Pages** เลือก Branch เป็น <code class="bg-rose-50 dark:bg-zinc-700 px-1 py-0.5 rounded text-rose-500">main</code> กด Save แล้วรอสักครู่ จะได้ลิงก์เว็บบอร์ดดูออนไลน์ได้เลย!
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-16 bg-white/50 dark:bg-zinc-900/50 border-t border-rose-100 dark:border-zinc-800">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <span class="text-3xl">💌</span>
+                <h2 class="text-3xl font-bold font-cute text-rose-600 dark:text-rose-400 mb-2">ช่องทางติดต่อพลอย</h2>
+                <p class="text-rose-900/60 dark:text-rose-200/60 text-sm mb-8">สามารถส่งอีเมลมาพูดคุยหรือสอบถามข้อมูลเพิ่มเติมได้ตลอดเลยนะคะ</p>
+
+                <div class="inline-flex flex-col sm:flex-row items-center justify-center gap-4 p-6 cute-card rounded-3xl w-full max-w-lg mx-auto">
+                    <div class="w-12 h-12 rounded-2xl bg-rose-500 text-white flex items-center justify-center text-xl shrink-0 animate-bounce">
+                        <i class="fa-regular fa-envelope"></i>
+                    </div>
+                    <div class="text-center sm:text-left overflow-hidden">
+                        <p class="text-xs text-rose-400 font-medium">อีเมลวิทยาลัย</p>
+                        <a href="mailto:69202302074@scphkk.ac.th" class="text-base sm:text-lg font-bold text-rose-600 dark:text-rose-300 hover:underline break-all">
+                            69202302074@scphkk.ac.th
+                        </a>
+                    </div>
+                    <button onclick="copyEmail()" class="px-4 py-2 text-xs font-cute bg-rose-100 dark:bg-zinc-700 text-rose-600 dark:text-rose-200 rounded-xl hover:bg-rose-200 transition-colors ml-auto shrink-0">
+                        <i class="fa-regular fa-copy mr-1"></i> <span id="copyText">คัดลอก</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white dark:bg-zinc-950 py-8 border-t border-rose-100 dark:border-zinc-800">
+        <div class="max-w-6xl mx-auto px-4 text-center text-xs text-rose-900/50 dark:text-rose-200/50">
+            <p>© 2026 รินทร์ฤทัย พฤกษบูรณ์โกศล (พลอย) - Minimal Cute Portfolio 🎀</p>
+            <p class="mt-1">วิทยาลัยการสาธารณสุขสิรินธร จังหวัดขอนแก่น</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // Dark Mode Toggle Logic
+        const themeToggleBtn = document.getElementById('themeToggle');
+        
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+
+        themeToggleBtn.addEventListener('click', () => {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+
+        // Mobile Menu Toggle Logic
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Copy Email Logic
+        function copyEmail() {
+            const email = "69202302074@scphkk.ac.th";
+            
+            const tempInput = document.createElement("input");
+            tempInput.value = email;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+
+            const copyText = document.getElementById("copyText");
+            copyText.innerText = "คัดลอกแล้วค่ะ! ✨";
+            setTimeout(() => {
+                copyText.innerText = "คัดลอก";
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
